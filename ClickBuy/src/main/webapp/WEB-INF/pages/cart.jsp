@@ -104,8 +104,8 @@ Country</td>
     <td>
       <div class="col-xs-4">
       <abbr title="Submit After Enter Value">  <input class="form-control" name="qnt" type="text"/></abbr>
-<%--      <a href="${url}"> <input type="submit" class="btn btn-primary btn-xs"/></a>
- --%>     </div></td>
+     <a href="${url}"> <input type="submit" class="btn btn-primary btn-xs"/></a>
+    </div></td>
     <td>${prdt.price}</td>
     </tr>    
     </c:forEach>

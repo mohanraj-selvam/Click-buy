@@ -95,9 +95,46 @@ public String removeCartItem(@PathVariable int id,Principal principal)
 	cart.setQuantiy(cart.getQuantiy()-1);
 	cart.setTotal(cart.getTotal()-prdt.getPrice());
 	crt.addtocart(cart);
+	if(cart.getProduct().size()==0)
+	{
+		return "redirect:/allProduct";
+	}
+	else{
 	return "redirect:/myCart";
-	
-	
+	}
 }
-
+@RequestMapping(value="/buynow/{id}")
+public String buynow(@PathVariable int id,Principal principal)
+{	
+	String username=principal.getName();
+	System.out.println(username);
+	List<Customer> custlist=customer.getByName(username);
+	Customer cust=custlist.get(0);
+	custlist.remove(0);
+	Cart cart=cust.getCart();
+	List<Product> list=cart.getProduct();
+	Product prdt=pd.getById(id);
+	int cnt=0;
+	for(int i=0;i<list.size();i++){
+		Product p=list.get(i);
+		if(p.getId()==prdt.getId())
+		{
+			cnt++;
+		}
+	}
+	if(cnt==0)
+	{
+		prdt.setCartQuantity(prdt.getCartQuantity()+1);
+		list.add(prdt);
+		cart.setCart_id(cart.getCart_id());
+		cart.setProduct(list);
+		cart.setQuantiy(cart.getQuantiy()+1);
+		cart.setTotal(cart.getTotal()+prdt.getPrice());
+		crt.addtocart(cart);
+		return "redirect:/myCart";
+	}
+	else{
+		return "redirect:/myCart";
+	}
+}
 }

@@ -70,7 +70,7 @@
 <img src="${pageContext.request.contextPath}/resources/Images/${prdt.id}.png" class="center-block" /><hr>
 
 <div class="col-md-" align="center">
-<a><input type= "button" Value="Buy Now" class="button"/></a>
+<a href="${pageContext.request.contextPath}/buynow/${prdt.id}"><input type= "button" Value="Buy Now" class="button"/></a>
 <a href="${pageContext.request.contextPath}/addtoCart/${prdt.id}"><input type= "button" Value="Add to cart" class="button"/></a></td>
 </div>
 <tr><td>
